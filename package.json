@@ -4,7 +4,8 @@
   "description": "A utility to elegantly read env variables as JS/TS types",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
