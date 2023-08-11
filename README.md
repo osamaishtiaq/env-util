@@ -1,6 +1,6 @@
 # strongly-env
 
-A utility to elegantly read environment variables as JavaScript/TypeScript types.
+A utility to elegantly read environment variables as JavaScript/TypeScript types. Simple, lightweight and performant wih no external dependencies. Also provides option to revert to default value in case env variable is undefined.    
 
 ## Installation
 
