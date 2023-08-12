@@ -26,6 +26,10 @@ describe("config", () => {
     it("should throw error for invalid input with no default value", () => {
       expect(() => config.loadInteger("INVALID_INT")).toThrowError();
     });
+
+    it("should return default value for undefined variable", () => {
+      expect(config.loadInteger(undefined, 100)).toBe(100);
+    });
   });
 
   describe("loadDecimal", () => {
@@ -39,6 +43,10 @@ describe("config", () => {
 
     it("should throw error for invalid input with no default value", () => {
       expect(() => config.loadDecimal("INVALID_DECIMAL")).toThrowError();
+    });
+
+    it("should return default value for undefined variable", () => {
+      expect(config.loadDecimal(undefined, 1.5)).toBe(1.5);
     });
   });
 
@@ -54,6 +62,10 @@ describe("config", () => {
     it("should throw error for invalid input with no default value", () => {
       expect(() => config.loadBoolean("INVALID_BOOL")).toThrowError();
     });
+
+    it("should return default value for undefined variable", () => {
+      expect(config.loadBoolean(undefined, true)).toBe(true);
+    });
   });
 
   describe("loadString", () => {
@@ -63,6 +75,10 @@ describe("config", () => {
 
     it("should return default value for undefined input", () => {
       expect(config.loadString("NON_EXISTENT_VAR", "default")).toBe("default");
+    });
+
+    it("should return default value for undefined variable", () => {
+      expect(config.loadString(undefined, "default")).toBe("default");
     });
   });
 
@@ -80,6 +96,10 @@ describe("config", () => {
         "default",
       ]);
     });
+
+    it("should return default value for undefined variable", () => {
+      expect(config.loadArray(undefined, ["default"])).toEqual(["default"]);
+    });
   });
 
   describe("loadObject", () => {
@@ -95,6 +115,12 @@ describe("config", () => {
 
     it("should throw error for invalid JSON input with no default value", () => {
       expect(() => config.loadObject("INVALID_JSON_VAR")).toThrowError();
+    });
+
+    it("should return default value for undefined variable", () => {
+      expect(config.loadObject(undefined, { key: "default" })).toEqual({
+        key: "default",
+      });
     });
   });
 

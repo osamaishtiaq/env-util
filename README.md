@@ -1,6 +1,6 @@
 # strongly-env
 
-A utility to elegantly read environment variables as JavaScript/TypeScript types. Simple, lightweight and performant wih no external dependencies. Also provides option to revert to default value in case env variable is undefined.    
+A utility to elegantly read environment variables as JavaScript/TypeScript types. Simple, lightweight and performant wih no external dependencies. Also provides option to revert to default value in case env variable is undefined.
 
 ## Installation
 
@@ -41,26 +41,29 @@ const appConfig = config.loadObject("APP_CONFIG", {
   name: "MyApp",
   version: "1.0.0",
 });
+
+// Handle cases where env variable is undefined
+const undefinedValue = config.loadInteger(undefined, 100);
 ```
 
 ### Utility Functions
 
-`loadInteger(envVariable: string, defaultValue?: number): number`  
+`loadInteger(envVariable: string | undefined, defaultValue?: number): number`  
 Load an integer environment variable with an optional default value.
 
-`loadDecimal(envVariable: string, defaultValue?: number): number`  
+`loadDecimal(envVariable: string | undefined, defaultValue?: number): number`  
 Load a decimal environment variable with an optional default value.
 
-`loadBoolean(envVariable: string, defaultValue?: boolean): boolean`  
+`loadBoolean(envVariable: string | undefined, defaultValue?: boolean): boolean`  
 Load a boolean environment variable with an optional default value.
 
-`loadString(envVariable: string, defaultValue?: string): string`  
+`loadString(envVariable: string | undefined, defaultValue?: string): string`  
 Load a string environment variable with an optional default value.
 
-`loadArray(envVariable: string, defaultValue?: string[]): string[]`  
+`loadArray(envVariable: string | undefined, defaultValue?: string[]): string[]`  
 Load an array of strings from an environment variable with an optional default value.
 
-`loadObject(envVariable: string, defaultValue: any): any`  
+`loadObject(envVariable: string | undefined, defaultValue: any): any`  
 Load a JSON object from an environment variable with an optional default value.
 
 ### Warning

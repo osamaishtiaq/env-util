@@ -1,4 +1,4 @@
-type LoadFunction<T> = (envVariable: string, defaultValue?: T) => T;
+type LoadFunction<T> = (envVariable: string | undefined, defaultValue?: T) => T;
 
 const validateBooleanValue = (input: string): boolean => {
   const lowerInput = input.toLowerCase();
@@ -11,7 +11,8 @@ const validateBooleanValue = (input: string): boolean => {
 };
 
 const loadInteger: LoadFunction<number> = (envVariable, defaultValue) => {
-  const input = process.env[envVariable];
+  const input =
+    envVariable !== undefined ? process.env[envVariable] : undefined;
   const parsedValue = parseInt(input || "", 10);
   if (isNaN(parsedValue)) {
     if (defaultValue !== undefined) {
@@ -23,7 +24,8 @@ const loadInteger: LoadFunction<number> = (envVariable, defaultValue) => {
 };
 
 const loadDecimal: LoadFunction<number> = (envVariable, defaultValue) => {
-  const input = process.env[envVariable];
+  const input =
+    envVariable !== undefined ? process.env[envVariable] : undefined;
   const parsedValue = parseFloat(input || "");
   if (isNaN(parsedValue)) {
     if (defaultValue !== undefined) {
@@ -35,7 +37,8 @@ const loadDecimal: LoadFunction<number> = (envVariable, defaultValue) => {
 };
 
 const loadBoolean: LoadFunction<boolean> = (envVariable, defaultValue) => {
-  const input = process.env[envVariable];
+  const input =
+    envVariable !== undefined ? process.env[envVariable] : undefined;
   if (input !== undefined) {
     try {
       return validateBooleanValue(input);
@@ -50,7 +53,8 @@ const loadBoolean: LoadFunction<boolean> = (envVariable, defaultValue) => {
 };
 
 const loadString: LoadFunction<string> = (envVariable, defaultValue) => {
-  const input = process.env[envVariable];
+  const input =
+    envVariable !== undefined ? process.env[envVariable] : undefined;
   return input !== undefined
     ? input
     : defaultValue !== undefined
@@ -59,7 +63,8 @@ const loadString: LoadFunction<string> = (envVariable, defaultValue) => {
 };
 
 const loadArray: LoadFunction<string[]> = (envVariable, defaultValue) => {
-  const input = process.env[envVariable];
+  const input =
+    envVariable !== undefined ? process.env[envVariable] : undefined;
   if (input !== undefined) {
     return input.split(",").map((item) => item.trim());
   }
@@ -67,7 +72,8 @@ const loadArray: LoadFunction<string[]> = (envVariable, defaultValue) => {
 };
 
 const loadObject: LoadFunction<any> = (envVariable, defaultValue) => {
-  const input = process.env[envVariable];
+  const input =
+    envVariable !== undefined ? process.env[envVariable] : undefined;
   if (input !== undefined) {
     try {
       return JSON.parse(input);

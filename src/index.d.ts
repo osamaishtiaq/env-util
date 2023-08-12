@@ -1,5 +1,8 @@
 declare module "strongly-env" {
-  export type LoadFunction<T> = (envVariable: string, defaultValue?: T) => T;
+  export type LoadFunction<T> = (
+    envVariable: string | undefined,
+    defaultValue?: T
+  ) => T;
 
   export const loadInteger: LoadFunction<number>;
   export const loadDecimal: LoadFunction<number>;
